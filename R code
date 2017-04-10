@@ -1,3 +1,9 @@
+## Download two packages and load it before begin
+install.packages("psych")
+install.packages("lubridate")
+library(psych)
+library(lubridate)
+
 1. Load the data (i.e. read.csv)
 ## I downloaded and unziped the file from the Cousera Site, saved the “activity.csv” data on my desktop. (Hard disk "C")
 
@@ -122,5 +128,24 @@ for (i in 1:17568) # loop to find the na
         week_day[i] <- 'weekend'
 }
 
+## create a new factor variable in the dataset "activity_filled_in" 
+activity_filled_in$weekday <-week_day
 
+9. Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis).
+
+## find the elements by "weekday" or "weekend"
+weekday <- grep("weekday",activity_filled_in$weekday)
+weekday_frame <- activity_filled_in[weekday,]
+weekend_frame <- activity_filled_in[-weekday,]
+
+## What is the average daily activity pattern?
+
+## Make a time series plot of the 5-minute interval (x-axis) and the average number of steps taken, 
+## averaged across all days (yaxis)
+five_min_average_weekday <- aggregate(steps~interval, data=weekday_frame, FUN=mean, na.rm=TRUE)
+five_min_average_weekend <- aggregate(steps~interval, data=weekend_frame, FUN=mean, na.rm=TRUE)
+
+plot(x = five_min_average_weekday$interval, y = five_min_average_weekday$steps, type = "l", main="Five Minutes Average Interval and Steps (Weekday)")
+
+plot(x = five_min_average_weekend$interval, y = five_min_average_weekend$steps, type = "l", main="Five Minutes Average Interval and Steps (Weekend)")
 
