@@ -5,10 +5,11 @@ library(psych)
 library(lubridate)
 
 1. Load the data (i.e. read.csv)
-## I downloaded and unziped the file from the Cousera Site, saved the “activity.csv” data on my desktop. (Hard disk "C")
+
+I downloaded and unziped the file from the Cousera Site, saved the “activity.csv” data on Hard disk "D".
 
 ## Loading the Dataset
-activity = read.csv("C:/Users/Sony/Desktop/Coursera/Reproducible Research/activity.csv")
+activity = read.csv("D:/Coursera/activity.csv")
 
 2. Process/transform the data (if necessary) into a format suitable for your analysis
 It was not needed to process/transform the data
